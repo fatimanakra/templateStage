@@ -1,0 +1,68 @@
+<!--<c-header class="mb-4 d-print-none" position="sticky">-->
+  <ng-container>
+    <c-container [fluid]="true" class="border-bottom px-4">
+      <button
+        [cSidebarToggle]="sidebarId"
+        cHeaderToggler
+        class="btn"
+        toggle="visible"
+        style="margin-inline-start: -3px;"
+      >
+        <svg cIcon name="cilMenu" size="lg"></svg>
+      </button>
+      <c-header-nav class="d-none d-md-flex">
+        <c-nav-item>
+          <a cNavLink routerLink="/dashboard" routerLinkActive="active">إقتصاد المغرب</a>
+        </c-nav-item>
+        <c-nav-item>
+          <a cNavLink routerLink="/users" routerLinkActive="active">إقتصاد إفريقيا</a>
+        </c-nav-item>
+        <c-nav-item>
+          <a cNavLink routerLink="/settings" routerLinkActive="active">إقتصاد أروبا</a>
+        </c-nav-item>
+        <c-nav-item>
+          <a cNavLink routerLink="/settings" routerLinkActive="active">إقتصاد آسيا</a>
+        </c-nav-item>
+        <c-nav-item>
+          <a cNavLink routerLink="/settings" routerLinkActive="active"> إقتصاد أمريكا</a>
+        </c-nav-item>
+      </c-header-nav>
+  
+      
+  
+      <c-header-nav class="ms-auto ms-md-0">
+        <div class="nav-item py-1">
+          <div class="vr h-100 mx-2 text-body text-opacity-75"></div>
+        </div>
+        <ng-container *ngTemplateOutlet="themeDropdown" />
+        <div class="nav-item py-1">
+          <div class="vr h-100 mx-2 text-body text-opacity-75"></div>
+        </div>
+      </c-header-nav>
+  
+  
+   
+      <ng-template #themeDropdown>
+        <c-dropdown alignment="end" variant="nav-item">
+          <button [caret]="false" cDropdownToggle>
+            <svg cIcon [name]="icons()" size="lg"></svg>
+          </button>
+          <div cDropdownMenu>
+            @for (mode of colorModes; track mode.name) {
+              <button
+                (click)="colorMode.set(mode.name)"
+                [active]="colorMode()===mode.name"
+                [routerLink]="[]"
+                cDropdownItem
+                class="d-flex align-items-center"
+              >
+                <svg cIcon class="me-2" [name]="mode.icon" size="lg"></svg>
+                {{ mode.text }}
+              </button>
+            }
+          </div>
+        </c-dropdown>
+      </ng-template>
+  
+  
+      
